@@ -5,46 +5,70 @@ import { motion, Variants } from "framer-motion";
 interface Project {
   title: string;
   description: string;
+  role: string;
+  challenges: string;
   tags: string[];
   size: "small" | "medium" | "large";
+  demoUrl?: string;
+  githubUrl?: string;
 }
 
 const projects: Project[] = [
   {
-    title: "AI-Powered Analytics",
-    description: "Real-time data visualization platform with machine learning insights",
-    tags: ["Next.js", "TypeScript", "TensorFlow"],
+    title: "AI-Powered Analytics Platform",
+    description: "Real-time data visualization platform with machine learning insights for enterprise clients",
+    role: "Lead Developer",
+    challenges: "Processed 10M+ daily events with sub-second latency. Achieved 99.9% uptime.",
+    tags: ["Next.js", "TypeScript", "TensorFlow", "PostgreSQL"],
     size: "large",
+    demoUrl: "https://demo.example.com",
+    githubUrl: "https://github.com/example",
   },
   {
     title: "E-Commerce Platform",
-    description: "Modern shopping experience with seamless checkout",
-    tags: ["React", "Node.js", "Stripe"],
+    description: "Modern shopping experience with seamless checkout and real-time inventory",
+    role: "Full Stack Developer",
+    challenges: "Increased conversion rate by 25% through checkout optimization.",
+    tags: ["React", "Node.js", "Stripe", "Redis"],
     size: "medium",
+    demoUrl: "https://demo.example.com",
+    githubUrl: "https://github.com/example",
   },
   {
-    title: "Mobile App",
-    description: "Cross-platform productivity tool",
+    title: "Mobile Productivity App",
+    description: "Cross-platform task management with offline sync",
+    role: "Frontend Lead",
+    challenges: "50k+ downloads with 4.8 star rating.",
     tags: ["React Native", "Firebase"],
     size: "small",
+    githubUrl: "https://github.com/example",
   },
   {
-    title: "Design System",
-    description: "Comprehensive component library and style guide",
-    tags: ["Storybook", "Tailwind"],
+    title: "Design System Library",
+    description: "Comprehensive component library used across 3 product lines",
+    role: "Creator & Maintainer",
+    challenges: "Reduced development time by 40% for new features.",
+    tags: ["Storybook", "Tailwind", "TypeScript"],
     size: "small",
+    githubUrl: "https://github.com/example",
   },
   {
-    title: "SaaS Dashboard",
-    description: "Enterprise-grade admin panel with advanced features",
-    tags: ["Vue.js", "PostgreSQL", "Redis"],
+    title: "SaaS Admin Dashboard",
+    description: "Enterprise-grade admin panel with advanced analytics and user management",
+    role: "Full Stack Developer",
+    challenges: "Serving 500+ enterprise customers with custom branding.",
+    tags: ["Vue.js", "PostgreSQL", "Redis", "Docker"],
     size: "medium",
+    demoUrl: "https://demo.example.com",
   },
   {
-    title: "Social Network",
-    description: "Community platform with real-time messaging",
-    tags: ["GraphQL", "WebSocket", "MongoDB"],
+    title: "Real-time Social Platform",
+    description: "Community platform with live messaging, notifications, and content feeds",
+    role: "Backend Lead",
+    challenges: "Handles 100k concurrent connections with WebSocket.",
+    tags: ["GraphQL", "WebSocket", "MongoDB", "AWS"],
     size: "large",
+    githubUrl: "https://github.com/example",
   },
 ];
 
@@ -134,22 +158,62 @@ export default function Projects() {
               {/* Content */}
               <div className="relative h-full p-6 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-white/60 text-sm sm:text-base mb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <span className="text-xs text-blue-400 bg-blue-400/10 px-2 py-1 rounded-full">
+                      {project.role}
+                    </span>
+                  </div>
+                  <p className="text-white/60 text-sm sm:text-base mb-2">
                     {project.description}
                   </p>
+                  <p className="text-green-400/80 text-xs sm:text-sm mb-4">
+                    {project.challenges}
+                  </p>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="px-3 py-1 text-xs sm:text-sm bg-white/5 border border-white/10 rounded-full text-white/70"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                <div>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {project.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="px-3 py-1 text-xs sm:text-sm bg-white/5 border border-white/10 rounded-full text-white/70"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-3">
+                    {project.demoUrl && (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-white/60 hover:text-white flex items-center gap-1 transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        Live Demo
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-white/60 hover:text-white flex items-center gap-1 transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z" />
+                        </svg>
+                        GitHub
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
 

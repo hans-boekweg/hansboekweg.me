@@ -3,8 +3,15 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "Nexus Portfolio",
-  description: "A high-performance portfolio built with Next.js 15, Tailwind CSS, and Framer Motion",
+  title: "Alex Johnson | Full Stack Developer",
+  description: "Full Stack Developer specializing in React, Next.js, and Node.js. Building scalable web applications and delightful user experiences.",
+  keywords: ["Full Stack Developer", "React", "Next.js", "Node.js", "TypeScript", "Web Developer", "Software Engineer"],
+  authors: [{ name: "Alex Johnson" }],
+  openGraph: {
+    title: "Alex Johnson | Full Stack Developer",
+    description: "Full Stack Developer specializing in React, Next.js, and Node.js. Building scalable web applications and delightful user experiences.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
