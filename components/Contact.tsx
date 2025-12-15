@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import ContactForm from "./ContactForm";
 
 export default function Contact() {
   return (
@@ -38,6 +39,12 @@ export default function Contact() {
             </svg>
             Download Résumé (PDF)
           </motion.a>
+        </div>
+
+        {/* Contact Form */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm mb-12">
+          <h3 className="text-xl font-semibold text-white mb-6">Send me a message</h3>
+          <ContactForm />
         </div>
 
         {/* Contact Methods */}

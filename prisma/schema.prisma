@@ -1,0 +1,94 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  read      Boolean  @default(false)
+  archived  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  role        String
+  challenges  String
+  tags        String   // JSON string array
+  size        String   @default("medium")
+  demoUrl     String?
+  githubUrl   String?
+  featured    Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Experience {
+  id           String   @id @default(cuid())
+  title        String
+  company      String
+  companyUrl   String?
+  location     String
+  period       String
+  description  String
+  achievements String   // JSON string array
+  order        Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Skill {
+  id        String   @id @default(cuid())
+  name      String
+  category  String
+  color     String   @default("blue")
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model SiteSettings {
+  id          String   @id @default("main")
+  heroTitle   String   @default("Hans Boekweg")
+  heroSubtitle String  @default("Business Strategy & Operations Leader")
+  heroDescription String @default("Driving business growth through strategic planning, operational excellence, and data-driven decision making.")
+  aboutText   String?
+  email       String   @default("hans.boekweg@example.com")
+  linkedin    String?
+  twitter     String?
+  calendly    String?
+  updatedAt   DateTime @updatedAt
+}
+
+model Analytics {
+  id        String   @id @default(cuid())
+  page      String
+  event     String
+  data      String?  // JSON string
+  ip        String?
+  userAgent String?
+  createdAt DateTime @default(now())
+}

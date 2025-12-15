@@ -23,3 +23,31 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
 }
+
+/* Performance: Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimize rendering for animated elements */
+[data-animate] {
+  will-change: transform, opacity;
+}
+
+/* Content visibility for below-the-fold sections */
+section:not(:first-of-type) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}

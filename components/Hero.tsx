@@ -1,33 +1,35 @@
 "use client";
 
+import { memo } from "react";
 import { motion, Variants } from "framer-motion";
 
-export default function Hero() {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
+// Memoize variants outside component to prevent recreation
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
     },
-  };
+  },
+};
 
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-      },
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
     },
-  };
+  },
+};
 
+function Hero() {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8" data-animate>
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -111,3 +113,6 @@ export default function Hero() {
     </section>
   );
 }
+
+// Memoize to prevent unnecessary re-renders
+export default memo(Hero);
