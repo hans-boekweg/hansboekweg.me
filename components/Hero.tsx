@@ -46,7 +46,7 @@ export default function Hero() {
           variants={itemVariants}
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-4"
         >
-          Alex Johnson
+          Hans Boekweg
         </motion.h1>
 
         {/* Role */}
@@ -55,7 +55,7 @@ export default function Hero() {
           className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6"
         >
           <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-            Full Stack Developer
+            Business Strategy & Operations Leader
           </span>
         </motion.h2>
         
@@ -64,7 +64,7 @@ export default function Hero() {
           variants={itemVariants}
           className="text-lg sm:text-xl md:text-2xl text-white/70 mb-4 max-w-2xl mx-auto"
         >
-          I build scalable web applications and delightful user experiences that drive business growth.
+          Driving business growth through strategic planning, operational excellence, and data-driven decision making.
         </motion.p>
 
         {/* Location */}
@@ -76,7 +76,7 @@ export default function Hero() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
-          San Francisco, CA • Remote-friendly
+          Netherlands • Open to Global Opportunities
         </motion.p>
         
         {/* CTAs */}

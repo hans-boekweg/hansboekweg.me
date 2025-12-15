@@ -19,43 +19,43 @@ interface CertificationItem {
 
 const education: EducationItem[] = [
   {
-    degree: "Bachelor of Science",
-    field: "Computer Science",
-    institution: "University of California, Berkeley",
-    year: "2018",
-    honors: "Magna Cum Laude • GPA: 3.8/4.0",
+    degree: "Master of Business Administration",
+    field: "Strategy & Finance",
+    institution: "INSEAD Business School",
+    year: "2013",
+    honors: "Dean's List • Graduated with Distinction",
     coursework: [
-      "Data Structures & Algorithms",
-      "Database Systems",
-      "Software Engineering",
-      "Machine Learning",
+      "Corporate Strategy",
+      "Financial Management",
+      "Organizational Behavior",
+      "International Business",
     ],
   },
 ];
 
 const certifications: CertificationItem[] = [
   {
-    name: "AWS Solutions Architect Professional",
-    issuer: "Amazon Web Services",
-    year: "2023",
-  },
-  {
-    name: "Google Cloud Professional Developer",
-    issuer: "Google Cloud",
+    name: "Lean Six Sigma Black Belt",
+    issuer: "ASQ",
     year: "2022",
   },
   {
-    name: "MongoDB Certified Developer",
-    issuer: "MongoDB",
-    year: "2021",
+    name: "Project Management Professional (PMP)",
+    issuer: "Project Management Institute",
+    year: "2020",
+  },
+  {
+    name: "Certified M&A Professional",
+    issuer: "Mergers & Acquisitions Council",
+    year: "2019",
   },
 ];
 
 const achievements = [
-  "Speaker at ReactConf 2023 - 'Scaling React Applications'",
-  "Published article on CSS-Tricks with 50k+ views",
-  "Open source contributor to Next.js and React Query",
-  "1st Place - TechCrunch Disrupt Hackathon 2022",
+  "Featured in Forbes 30 Under 30 - Business Leaders (2019)",
+  "Keynote Speaker at European Business Summit 2023",
+  "Board Advisor to 3 high-growth technology startups",
+  "Published thought leadership in Harvard Business Review",
 ];
 
 export default function Education() {

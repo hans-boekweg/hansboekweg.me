@@ -30,23 +30,22 @@ export default function About() {
           >
             <div className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm">
               <p className="text-lg text-white/80 leading-relaxed mb-6">
-                I&apos;m a passionate Full Stack Developer with 5+ years of experience building 
-                web applications that solve real-world problems. I specialize in creating 
-                performant, accessible, and beautifully designed digital experiences using 
-                modern technologies.
+                I&apos;m a results-driven business leader with extensive experience in strategic 
+                planning, operations management, and driving organizational growth. I excel at 
+                translating complex business challenges into actionable strategies that deliver 
+                measurable outcomes.
               </p>
               <p className="text-lg text-white/80 leading-relaxed mb-6">
-                My core strengths include <span className="text-blue-400">frontend architecture</span>, 
-                {" "}<span className="text-blue-400">API design</span>, and 
-                {" "}<span className="text-blue-400">cloud infrastructure</span>. I thrive in 
-                collaborative environments where I can contribute to both technical decisions 
-                and product strategy.
+                My core strengths include <span className="text-blue-400">strategic planning</span>, 
+                {" "}<span className="text-blue-400">business development</span>, and 
+                {" "}<span className="text-blue-400">operational excellence</span>. I thrive in 
+                dynamic environments where I can lead cross-functional teams and drive 
+                transformative initiatives.
               </p>
               <p className="text-lg text-white/80 leading-relaxed">
-                What drives me? I love tackling complex problems that require creative solutions, 
-                especially those that improve how people interact with technology. When I&apos;m not 
-                coding, you&apos;ll find me contributing to open source, writing technical articles, 
-                or exploring hiking trails.
+                What drives me? I&apos;m passionate about building high-performing teams, optimizing 
+                business processes, and creating sustainable competitive advantages. Outside of 
+                work, I enjoy staying current with industry trends and mentoring emerging leaders.
               </p>
             </div>
           </motion.div>
@@ -66,19 +65,19 @@ export default function About() {
               <ul className="space-y-2">
                 <li className="text-white/80 flex items-center gap-2">
                   <span className="w-2 h-2 bg-blue-400 rounded-full" />
-                  Web Applications
+                  Strategic Planning
                 </li>
                 <li className="text-white/80 flex items-center gap-2">
                   <span className="w-2 h-2 bg-purple-400 rounded-full" />
-                  SaaS Products
+                  Business Development
                 </li>
                 <li className="text-white/80 flex items-center gap-2">
                   <span className="w-2 h-2 bg-green-400 rounded-full" />
-                  Developer Tools
+                  Operations Management
                 </li>
                 <li className="text-white/80 flex items-center gap-2">
                   <span className="w-2 h-2 bg-orange-400 rounded-full" />
-                  API Integration
+                  Digital Transformation
                 </li>
               </ul>
             </div>
@@ -89,20 +88,20 @@ export default function About() {
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-3xl font-bold text-blue-400">5+</p>
+                  <p className="text-3xl font-bold text-blue-400">10+</p>
                   <p className="text-sm text-white/60">Years Exp.</p>
                 </div>
                 <div>
-                  <p className="text-3xl font-bold text-purple-400">50+</p>
-                  <p className="text-sm text-white/60">Projects</p>
+                  <p className="text-3xl font-bold text-purple-400">€50M+</p>
+                  <p className="text-sm text-white/60">Revenue Impact</p>
                 </div>
                 <div>
-                  <p className="text-3xl font-bold text-green-400">20+</p>
-                  <p className="text-sm text-white/60">Clients</p>
+                  <p className="text-3xl font-bold text-green-400">30+</p>
+                  <p className="text-sm text-white/60">Teams Led</p>
                 </div>
                 <div>
-                  <p className="text-3xl font-bold text-orange-400">10k+</p>
-                  <p className="text-sm text-white/60">GitHub Stars</p>
+                  <p className="text-3xl font-bold text-orange-400">15+</p>
+                  <p className="text-sm text-white/60">Countries</p>
                 </div>
               </div>
             </div>

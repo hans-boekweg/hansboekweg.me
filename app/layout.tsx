@@ -3,13 +3,13 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "Alex Johnson | Full Stack Developer",
-  description: "Full Stack Developer specializing in React, Next.js, and Node.js. Building scalable web applications and delightful user experiences.",
-  keywords: ["Full Stack Developer", "React", "Next.js", "Node.js", "TypeScript", "Web Developer", "Software Engineer"],
-  authors: [{ name: "Alex Johnson" }],
+  title: "Hans Boekweg | Business Strategy & Operations Leader",
+  description: "Business Strategy & Operations Leader driving growth through strategic planning, operational excellence, and data-driven decision making.",
+  keywords: ["Business Strategy", "Operations Management", "Strategic Planning", "Business Development", "Leadership", "Consulting", "Digital Transformation"],
+  authors: [{ name: "Hans Boekweg" }],
   openGraph: {
-    title: "Alex Johnson | Full Stack Developer",
-    description: "Full Stack Developer specializing in React, Next.js, and Node.js. Building scalable web applications and delightful user experiences.",
+    title: "Hans Boekweg | Business Strategy & Operations Leader",
+    description: "Business Strategy & Operations Leader driving growth through strategic planning, operational excellence, and data-driven decision making.",
     type: "website",
   },
 };
