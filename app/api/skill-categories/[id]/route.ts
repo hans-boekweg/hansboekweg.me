@@ -9,22 +9,25 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const project = await prisma.project.findUnique({
+    const category = await prisma.skillCategory.findUnique({
       where: { id },
     });
 
-    if (!project) {
-      return NextResponse.json({ error: "Project not found" }, { status: 404 });
+    if (!category) {
+      return NextResponse.json(
+        { error: "Skill category not found" },
+        { status: 404 }
+      );
     }
 
     return NextResponse.json({
-      ...project,
-      tags: JSON.parse(project.tags),
+      ...category,
+      skills: JSON.parse(category.skills) as string[],
     });
   } catch (error) {
-    console.error("Failed to fetch project:", error);
+    console.error("Failed to fetch skill category:", error);
     return NextResponse.json(
-      { error: "Failed to fetch project" },
+      { error: "Failed to fetch skill category" },
       { status: 500 }
     );
   }
@@ -42,35 +45,28 @@ export async function PUT(
 
     const { id } = await params;
     const body = await request.json();
-    const { title, description, role, challenges, tags, size, demoUrl, githubUrl, featured, order } = body;
+    const { title, color, skills, order } = body;
 
-    const project = await prisma.project.update({
+    const category = await prisma.skillCategory.update({
       where: { id },
       data: {
         title,
-        description,
-        role,
-        challenges,
-        tags: tags ? JSON.stringify(tags) : undefined,
-        size,
-        demoUrl,
-        githubUrl,
-        featured,
+        color,
+        skills: JSON.stringify(skills || []),
         order,
       },
     });
 
-    // Revalidate the home page to show updated data
     revalidatePath("/");
 
     return NextResponse.json({
-      ...project,
-      tags: JSON.parse(project.tags),
+      ...category,
+      skills: JSON.parse(category.skills) as string[],
     });
   } catch (error) {
-    console.error("Failed to update project:", error);
+    console.error("Failed to update skill category:", error);
     return NextResponse.json(
-      { error: "Failed to update project" },
+      { error: "Failed to update skill category" },
       { status: 500 }
     );
   }
@@ -87,18 +83,17 @@ export async function DELETE(
     }
 
     const { id } = await params;
-    await prisma.project.delete({
+    await prisma.skillCategory.delete({
       where: { id },
     });
 
-    // Revalidate the home page to show updated data
     revalidatePath("/");
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Failed to delete project:", error);
+    console.error("Failed to delete skill category:", error);
     return NextResponse.json(
-      { error: "Failed to delete project" },
+      { error: "Failed to delete skill category" },
       { status: 500 }
     );
   }

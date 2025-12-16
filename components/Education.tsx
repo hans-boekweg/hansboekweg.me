@@ -3,22 +3,42 @@
 import { motion } from "framer-motion";
 
 interface EducationItem {
+  id: string;
   degree: string;
   field: string;
   institution: string;
   year: string;
-  honors?: string;
+  honors?: string | null;
   coursework?: string[];
 }
 
 interface CertificationItem {
+  id: string;
   name: string;
   issuer: string;
   year: string;
 }
 
-const education: EducationItem[] = [
+interface AchievementItem {
+  id: string;
+  text: string;
+}
+
+interface SiteSettings {
+  educationTitle?: string | null;
+  educationDescription?: string | null;
+}
+
+interface EducationProps {
+  settings?: SiteSettings | null;
+  education?: EducationItem[];
+  certifications?: CertificationItem[];
+  achievements?: AchievementItem[];
+}
+
+const defaultEducation: EducationItem[] = [
   {
+    id: "default-1",
     degree: "Master of Business Administration",
     field: "Strategy & Finance",
     institution: "INSEAD Business School",
@@ -33,32 +53,42 @@ const education: EducationItem[] = [
   },
 ];
 
-const certifications: CertificationItem[] = [
+const defaultCertifications: CertificationItem[] = [
   {
+    id: "cert-1",
     name: "Lean Six Sigma Black Belt",
     issuer: "ASQ",
     year: "2022",
   },
   {
+    id: "cert-2",
     name: "Project Management Professional (PMP)",
     issuer: "Project Management Institute",
     year: "2020",
   },
   {
+    id: "cert-3",
     name: "Certified M&A Professional",
     issuer: "Mergers & Acquisitions Council",
     year: "2019",
   },
 ];
 
-const achievements = [
-  "Featured in Forbes 30 Under 30 - Business Leaders (2019)",
-  "Keynote Speaker at European Business Summit 2023",
-  "Board Advisor to 3 high-growth technology startups",
-  "Published thought leadership in Harvard Business Review",
+const defaultAchievements: AchievementItem[] = [
+  { id: "ach-1", text: "Featured in Forbes 30 Under 30 - Business Leaders (2019)" },
+  { id: "ach-2", text: "Keynote Speaker at European Business Summit 2023" },
+  { id: "ach-3", text: "Board Advisor to 3 high-growth technology startups" },
+  { id: "ach-4", text: "Published thought leadership in Harvard Business Review" },
 ];
 
-export default function Education() {
+export default function Education({ settings, education, certifications, achievements }: EducationProps) {
+  const educationTitle = settings?.educationTitle || "Education & Achievements";
+  const educationDescription = settings?.educationDescription || "Academic background and professional certifications";
+  
+  const educationList = education && education.length > 0 ? education : defaultEducation;
+  const certificationList = certifications && certifications.length > 0 ? certifications : defaultCertifications;
+  const achievementList = achievements && achievements.length > 0 ? achievements : defaultAchievements;
+  
   return (
     <section id="education" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -70,10 +100,10 @@ export default function Education() {
           className="mb-12"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">
-            Education & Achievements
+            {educationTitle}
           </h2>
           <p className="text-lg sm:text-xl text-white/60">
-            Academic background and professional certifications
+            {educationDescription}
           </p>
         </motion.div>
 
@@ -97,8 +127,8 @@ export default function Education() {
               <h3 className="text-xl font-bold text-blue-400">Education</h3>
             </div>
 
-            {education.map((edu, index) => (
-              <div key={index} className="space-y-2">
+            {educationList.map((edu) => (
+              <div key={edu.id} className="space-y-2">
                 <h4 className="text-lg font-semibold text-white">
                   {edu.degree} in {edu.field}
                 </h4>
@@ -107,7 +137,7 @@ export default function Education() {
                 {edu.honors && (
                   <p className="text-green-400 text-sm">{edu.honors}</p>
                 )}
-                {edu.coursework && (
+                {edu.coursework && edu.coursework.length > 0 && (
                   <div className="mt-4">
                     <p className="text-white/50 text-sm mb-2">Relevant Coursework:</p>
                     <div className="flex flex-wrap gap-2">
@@ -144,8 +174,8 @@ export default function Education() {
             </div>
 
             <ul className="space-y-4">
-              {certifications.map((cert, index) => (
-                <li key={index} className="flex items-start gap-3">
+              {certificationList.map((cert) => (
+                <li key={cert.id} className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
@@ -176,12 +206,12 @@ export default function Education() {
             </div>
 
             <ul className="space-y-4">
-              {achievements.map((achievement, index) => (
-                <li key={index} className="flex items-start gap-3">
+              {achievementList.map((achievement) => (
+                <li key={achievement.id} className="flex items-start gap-3">
                   <svg className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
-                  <p className="text-white/70 text-sm">{achievement}</p>
+                  <p className="text-white/70 text-sm">{achievement.text}</p>
                 </li>
               ))}
             </ul>

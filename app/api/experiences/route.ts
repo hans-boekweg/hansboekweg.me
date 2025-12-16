@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 
@@ -46,6 +47,9 @@ export async function POST(request: NextRequest) {
         order: order ?? 0,
       },
     });
+
+    // Revalidate the home page to show the new experience
+    revalidatePath("/");
 
     return NextResponse.json(experience, { status: 201 });
   } catch (error) {

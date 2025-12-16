@@ -3,60 +3,30 @@
 import { motion } from "framer-motion";
 
 interface ExperienceItem {
+  id: string;
   title: string;
   company: string;
-  companyUrl?: string;
+  companyUrl?: string | null;
   location: string;
   period: string;
   description: string;
   achievements: string[];
 }
 
-const experiences: ExperienceItem[] = [
-  {
-    title: "Chief Operating Officer",
-    company: "TechScale Ventures",
-    companyUrl: "https://example.com",
-    location: "Amsterdam, Netherlands",
-    period: "2021 - Present",
-    description: "Leading operations and strategic initiatives for a €100M+ technology investment portfolio.",
-    achievements: [
-      "Drove 45% revenue growth across portfolio companies through operational improvements",
-      "Led M&A integration of 3 acquisitions, achieving synergy targets 6 months ahead of schedule",
-      "Built and scaled operations team from 15 to 50+ professionals across 5 countries",
-      "Implemented data-driven decision framework reducing operating costs by €8M annually",
-    ],
-  },
-  {
-    title: "Director of Business Development",
-    company: "Global Dynamics Group",
-    companyUrl: "https://example.com",
-    location: "Rotterdam, Netherlands",
-    period: "2017 - 2021",
-    description: "Spearheaded business expansion and strategic partnerships across European markets.",
-    achievements: [
-      "Generated €25M in new revenue through strategic partnership development",
-      "Expanded market presence to 8 new European countries within 3 years",
-      "Negotiated and closed enterprise contracts worth €50M+ total contract value",
-      "Developed go-to-market strategy that increased market share by 35%",
-    ],
-  },
-  {
-    title: "Senior Strategy Consultant",
-    company: "McKinsey & Company",
-    companyUrl: "https://mckinsey.com",
-    location: "Amsterdam, Netherlands",
-    period: "2013 - 2017",
-    description: "Advised Fortune 500 clients on strategic transformation and operational excellence.",
-    achievements: [
-      "Led 20+ strategic engagements across technology, retail, and financial services sectors",
-      "Delivered €100M+ in identified cost savings for clients through process optimization",
-      "Developed proprietary frameworks for digital transformation adopted firm-wide",
-    ],
-  },
-];
+interface SiteSettings {
+  experienceTitle?: string | null;
+  experienceDescription?: string | null;
+}
 
-export default function Experience() {
+interface ExperienceProps {
+  experiences: ExperienceItem[];
+  settings?: SiteSettings | null;
+}
+
+export default function Experience({ experiences, settings }: ExperienceProps) {
+  const experienceTitle = settings?.experienceTitle || "Experience";
+  const experienceDescription = settings?.experienceDescription || "My professional journey and key achievements";
+  
   return (
     <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
@@ -68,10 +38,10 @@ export default function Experience() {
           className="mb-12"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">
-            Experience
+            {experienceTitle}
           </h2>
           <p className="text-lg sm:text-xl text-white/60">
-            My professional journey and key achievements
+            {experienceDescription}
           </p>
         </motion.div>
 
@@ -82,7 +52,7 @@ export default function Experience() {
           <div className="space-y-12">
             {experiences.map((exp, index) => (
               <motion.div
-                key={index}
+                key={exp.id}
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}

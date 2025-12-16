@@ -9,22 +9,22 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const project = await prisma.project.findUnique({
+    const experience = await prisma.experience.findUnique({
       where: { id },
     });
 
-    if (!project) {
-      return NextResponse.json({ error: "Project not found" }, { status: 404 });
+    if (!experience) {
+      return NextResponse.json({ error: "Experience not found" }, { status: 404 });
     }
 
     return NextResponse.json({
-      ...project,
-      tags: JSON.parse(project.tags),
+      ...experience,
+      achievements: JSON.parse(experience.achievements),
     });
   } catch (error) {
-    console.error("Failed to fetch project:", error);
+    console.error("Failed to fetch experience:", error);
     return NextResponse.json(
-      { error: "Failed to fetch project" },
+      { error: "Failed to fetch experience" },
       { status: 500 }
     );
   }
@@ -42,20 +42,18 @@ export async function PUT(
 
     const { id } = await params;
     const body = await request.json();
-    const { title, description, role, challenges, tags, size, demoUrl, githubUrl, featured, order } = body;
+    const { title, company, companyUrl, location, period, description, achievements, order } = body;
 
-    const project = await prisma.project.update({
+    const experience = await prisma.experience.update({
       where: { id },
       data: {
         title,
+        company,
+        companyUrl,
+        location,
+        period,
         description,
-        role,
-        challenges,
-        tags: tags ? JSON.stringify(tags) : undefined,
-        size,
-        demoUrl,
-        githubUrl,
-        featured,
+        achievements: achievements ? JSON.stringify(achievements) : undefined,
         order,
       },
     });
@@ -64,13 +62,13 @@ export async function PUT(
     revalidatePath("/");
 
     return NextResponse.json({
-      ...project,
-      tags: JSON.parse(project.tags),
+      ...experience,
+      achievements: JSON.parse(experience.achievements),
     });
   } catch (error) {
-    console.error("Failed to update project:", error);
+    console.error("Failed to update experience:", error);
     return NextResponse.json(
-      { error: "Failed to update project" },
+      { error: "Failed to update experience" },
       { status: 500 }
     );
   }
@@ -87,7 +85,7 @@ export async function DELETE(
     }
 
     const { id } = await params;
-    await prisma.project.delete({
+    await prisma.experience.delete({
       where: { id },
     });
 
@@ -96,9 +94,9 @@ export async function DELETE(
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Failed to delete project:", error);
+    console.error("Failed to delete experience:", error);
     return NextResponse.json(
-      { error: "Failed to delete project" },
+      { error: "Failed to delete experience" },
       { status: 500 }
     );
   }

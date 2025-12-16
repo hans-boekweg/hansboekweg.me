@@ -127,8 +127,12 @@ export default async function AdminDashboard() {
             <div className="grid grid-cols-2 gap-4">
               <ActionButton href="/admin/projects/new" icon="➕" label="Add Project" />
               <ActionButton href="/admin/experiences/new" icon="➕" label="Add Experience" />
+              <ActionButton href="/admin/skills" icon="🎯" label="Manage Skills" />
+              <ActionButton href="/admin/about" icon="👤" label="Manage About" />
+              <ActionButton href="/admin/education" icon="🎓" label="Manage Education" />
               <ActionButton href="/admin/settings" icon="⚙️" label="Site Settings" />
               <ActionButton href="/admin/analytics" icon="📊" label="Analytics" />
+              <ActionButton href="/" icon="👁️" label="View Site" />
             </div>
           </div>
         </div>

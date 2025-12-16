@@ -3,68 +3,26 @@
 import { motion, Variants } from "framer-motion";
 
 interface Project {
+  id: string;
   title: string;
   description: string;
   role: string;
   challenges: string;
   tags: string[];
-  size: "small" | "medium" | "large";
-  demoUrl?: string;
-  githubUrl?: string;
+  size: string;
+  demoUrl?: string | null;
+  githubUrl?: string | null;
 }
 
-const projects: Project[] = [
-  {
-    title: "Digital Transformation Initiative",
-    description: "Led end-to-end digital transformation for a €500M manufacturing company, modernizing operations across 12 facilities",
-    role: "Program Director",
-    challenges: "Achieved €15M annual savings and 40% productivity improvement within 18 months.",
-    tags: ["Change Management", "Digital Strategy", "Process Optimization", "ERP Implementation"],
-    size: "large",
-  },
-  {
-    title: "Market Expansion Strategy",
-    description: "Developed and executed market entry strategy for Nordic expansion of fintech platform",
-    role: "Strategy Lead",
-    challenges: "Captured 12% market share in first year, generating €8M new revenue.",
-    tags: ["Market Analysis", "Go-to-Market", "Partnership Development"],
-    size: "medium",
-    demoUrl: "https://example.com/case-study",
-  },
-  {
-    title: "Post-Merger Integration",
-    description: "Managed integration of €75M acquisition, aligning operations and culture",
-    role: "Integration Lead",
-    challenges: "Retained 95% of key talent and achieved synergy targets 6 months early.",
-    tags: ["M&A", "Change Management", "Team Building"],
-    size: "small",
-  },
-  {
-    title: "Operational Excellence Program",
-    description: "Implemented lean methodology across supply chain operations",
-    role: "Program Manager",
-    challenges: "Reduced lead times by 35% and inventory costs by €4M.",
-    tags: ["Lean Six Sigma", "Supply Chain", "KPI Development"],
-    size: "small",
-  },
-  {
-    title: "Strategic Partnership Platform",
-    description: "Built B2B partnership ecosystem connecting 200+ enterprise vendors with SMB clients",
-    role: "Business Owner",
-    challenges: "Generated €20M GMV in first year with 85% partner retention rate.",
-    tags: ["Business Development", "Platform Strategy", "Vendor Management", "Revenue Growth"],
-    size: "medium",
-    demoUrl: "https://example.com/platform",
-  },
-  {
-    title: "Corporate Innovation Lab",
-    description: "Established innovation hub to drive new product development and startup partnerships",
-    role: "Founding Director",
-    challenges: "Launched 5 new product lines and 3 successful startup investments.",
-    tags: ["Innovation Strategy", "Venture Building", "R&D Management", "Startup Ecosystem"],
-    size: "large",
-  },
-];
+interface SiteSettings {
+  projectsTitle?: string | null;
+  projectsDescription?: string | null;
+}
+
+interface ProjectsProps {
+  projects: Project[];
+  settings?: SiteSettings | null;
+}
 
 const getSizeClass = (size: string): string => {
   switch (size) {
@@ -77,7 +35,10 @@ const getSizeClass = (size: string): string => {
   }
 };
 
-export default function Projects() {
+export default function Projects({ projects, settings }: ProjectsProps) {
+  const projectsTitle = settings?.projectsTitle || "Featured Projects";
+  const projectsDescription = settings?.projectsDescription || "A collection of my recent work and experiments";
+  
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -110,10 +71,10 @@ export default function Projects() {
           className="mb-12"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">
-            Featured Projects
+            {projectsTitle}
           </h2>
           <p className="text-lg sm:text-xl text-white/60">
-            A collection of my recent work and experiments
+            {projectsDescription}
           </p>
         </motion.div>
 
@@ -124,9 +85,9 @@ export default function Projects() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[240px]"
         >
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <motion.div
-              key={index}
+              key={project.id}
               variants={cardVariants}
               whileHover={{ 
                 scale: 1.02,

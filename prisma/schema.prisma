@@ -70,16 +70,85 @@ model Skill {
   createdAt DateTime @default(now())
 }
 
+model SkillCategory {
+  id        String   @id @default(cuid())
+  title     String
+  color     String   @default("blue")
+  skills    String   // JSON string array of skill names
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Education {
+  id          String   @id @default(cuid())
+  degree      String
+  field       String
+  institution String
+  year        String
+  honors      String?
+  coursework  String?  // JSON string array
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Certification {
+  id        String   @id @default(cuid())
+  name      String
+  issuer    String
+  year      String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Achievement {
+  id        String   @id @default(cuid())
+  text      String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
 model SiteSettings {
   id          String   @id @default("main")
+  // Hero Section
   heroTitle   String   @default("Hans Boekweg")
   heroSubtitle String  @default("Business Strategy & Operations Leader")
   heroDescription String @default("Driving business growth through strategic planning, operational excellence, and data-driven decision making.")
+  heroLocation String  @default("Netherlands • Open to Global Opportunities")
+  // About Section
   aboutText   String?
+  aboutTitle  String   @default("About Me")
+  focusAreas  String?  // JSON array of {text: string, color: string}
+  stats       String?  // JSON array of {value: string, label: string, color: string}
+  // Contact Section
   email       String   @default("hans.boekweg@example.com")
+  phone       String?
   linkedin    String?
   twitter     String?
   calendly    String?
+  github      String?
+  instagram   String?
+  tiktok      String?
+  whatsapp    String?
+  youtube     String?
+  facebook    String?
+  dribbble    String?
+  behance     String?
+  medium      String?
+  // Section Titles & Descriptions
+  skillsTitle        String @default("Skills")
+  skillsDescription  String @default("Technologies and expertise I bring to the table")
+  experienceTitle    String @default("Experience")
+  experienceDescription String @default("My professional journey and key achievements")
+  projectsTitle      String @default("Featured Projects")
+  projectsDescription String @default("A collection of my recent work and experiments")
+  educationTitle     String @default("Education & Achievements")
+  educationDescription String @default("Academic background and professional certifications")
+  contactTitle       String @default("Let's Build Something Amazing Together")
+  contactDescription String @default("I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.")
+  // Resume
+  resumeUrl   String?
   updatedAt   DateTime @updatedAt
 }
 

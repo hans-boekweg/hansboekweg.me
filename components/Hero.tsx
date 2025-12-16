@@ -3,6 +3,19 @@
 import { memo } from "react";
 import { motion, Variants } from "framer-motion";
 
+interface SiteSettings {
+  heroTitle: string;
+  heroSubtitle: string;
+  heroDescription: string;
+  heroLocation?: string | null;
+  resumeUrl?: string | null;
+  github?: string | null;
+}
+
+interface HeroProps {
+  settings: SiteSettings | null;
+}
+
 // Memoize variants outside component to prevent recreation
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -27,7 +40,12 @@ const itemVariants: Variants = {
   },
 };
 
-function Hero() {
+function Hero({ settings }: HeroProps) {
+  const title = settings?.heroTitle || "Hans Boekweg";
+  const subtitle = settings?.heroSubtitle || "Business Strategy & Operations Leader";
+  const description = settings?.heroDescription || "Driving business growth through strategic planning, operational excellence, and data-driven decision making.";
+  const location = settings?.heroLocation || "Netherlands • Open to Global Opportunities";
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8" data-animate>
       <motion.div
@@ -48,7 +66,7 @@ function Hero() {
           variants={itemVariants}
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-4"
         >
-          Hans Boekweg
+          {title}
         </motion.h1>
 
         {/* Role */}
@@ -57,7 +75,7 @@ function Hero() {
           className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6"
         >
           <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-            Business Strategy & Operations Leader
+            {subtitle}
           </span>
         </motion.h2>
         
@@ -66,7 +84,7 @@ function Hero() {
           variants={itemVariants}
           className="text-lg sm:text-xl md:text-2xl text-white/70 mb-4 max-w-2xl mx-auto"
         >
-          Driving business growth through strategic planning, operational excellence, and data-driven decision making.
+          {description}
         </motion.p>
 
         {/* Location */}
@@ -78,7 +96,7 @@ function Hero() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
-          Netherlands • Open to Global Opportunities
+          {location}
         </motion.p>
         
         {/* CTAs */}

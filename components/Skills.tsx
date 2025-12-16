@@ -3,15 +3,30 @@
 import { motion } from "framer-motion";
 
 interface SkillCategory {
+  id: string;
   title: string;
   skills: string[];
   color: string;
+  order: number;
 }
 
-const skillCategories: SkillCategory[] = [
+interface SiteSettings {
+  skillsTitle?: string | null;
+  skillsDescription?: string | null;
+}
+
+interface SkillsProps {
+  settings?: SiteSettings | null;
+  categories?: SkillCategory[];
+}
+
+// Default categories for fallback
+const defaultCategories: SkillCategory[] = [
   {
+    id: "1",
     title: "Strategic & Business Skills",
     color: "blue",
+    order: 0,
     skills: [
       "Strategic Planning",
       "Business Development",
@@ -26,8 +41,10 @@ const skillCategories: SkillCategory[] = [
     ],
   },
   {
+    id: "2",
     title: "Leadership & Management",
     color: "purple",
+    order: 1,
     skills: [
       "Executive Leadership",
       "Team Building",
@@ -40,8 +57,10 @@ const skillCategories: SkillCategory[] = [
     ],
   },
   {
+    id: "3",
     title: "Operations & Analytics",
     color: "green",
+    order: 2,
     skills: [
       "Process Optimization",
       "KPI Development",
@@ -61,6 +80,16 @@ const getColorClasses = (color: string) => {
       return "border-purple-500/30 bg-purple-500/10 text-purple-300";
     case "green":
       return "border-green-500/30 bg-green-500/10 text-green-300";
+    case "red":
+      return "border-red-500/30 bg-red-500/10 text-red-300";
+    case "yellow":
+      return "border-yellow-500/30 bg-yellow-500/10 text-yellow-300";
+    case "pink":
+      return "border-pink-500/30 bg-pink-500/10 text-pink-300";
+    case "cyan":
+      return "border-cyan-500/30 bg-cyan-500/10 text-cyan-300";
+    case "orange":
+      return "border-orange-500/30 bg-orange-500/10 text-orange-300";
     default:
       return "border-white/20 bg-white/5 text-white/70";
   }
@@ -74,12 +103,28 @@ const getHeaderColorClasses = (color: string) => {
       return "text-purple-400";
     case "green":
       return "text-green-400";
+    case "red":
+      return "text-red-400";
+    case "yellow":
+      return "text-yellow-400";
+    case "pink":
+      return "text-pink-400";
+    case "cyan":
+      return "text-cyan-400";
+    case "orange":
+      return "text-orange-400";
     default:
       return "text-white";
   }
 };
 
-export default function Skills() {
+export default function Skills({ settings, categories }: SkillsProps) {
+  const skillsTitle = settings?.skillsTitle || "Skills";
+  const skillsDescription = settings?.skillsDescription || "Technologies and expertise I bring to the table";
+  
+  // Use provided categories or fall back to defaults
+  const skillCategories = categories && categories.length > 0 ? categories : defaultCategories;
+  
   return (
     <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -91,10 +136,10 @@ export default function Skills() {
           className="mb-12"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">
-            Skills
+            {skillsTitle}
           </h2>
           <p className="text-lg sm:text-xl text-white/60">
-            Technologies and expertise I bring to the table
+            {skillsDescription}
           </p>
         </motion.div>
 
